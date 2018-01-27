@@ -17,11 +17,12 @@ Including another URLconf
 # from django.urls import path
 from django.conf.urls import url
 from . import view, DMZdb
-from MusicApp.views import music_home
+from MusicApp.views import music_home, upload_midi
 
 urlpatterns = [
    # path('admin/', admin.site.urls),
     url(r'^hello$', view.hello),
     url(r'^DMZdb$', DMZdb.DMZdb),
     url(r'^music_home$', music_home),
+    url(r'^upload_midi/', upload_midi),
 ]
