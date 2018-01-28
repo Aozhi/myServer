@@ -2,7 +2,11 @@ from django.shortcuts import render, HttpResponse
 from . import models
 import os
 import time
-
+import socket
+import logging
+import json
+import requests
+# import urllib
 
 # Create your views here.
 Rootpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +24,14 @@ def upload_midi(request):
             mf = open(midifile_dest,'w')    # 打开特定的文件 wrote to nas    
             mf.write(midistart)
             mf.close
-            # for chunk in midistart.chunks():      # 分块写入文件nas  
-            #     destination.write(chunk)  
-            # destination.close()  
+            log = logging.getLogger("Core.Analysis.Processing")
+            post_server = "localhost:8000"
+            # req = urllib.request(post_server,json.dumps({'filename' : date_and_time, 'midistart' : midistart}))   #生成页面请求的完整数据
+            # response = urlopen(req)    # 发送页面请求
+            # except urllib2.HTTPError,error:
+            #     print ("ERROR:error.read()")
+            reponse = requests.post("http://localhost:8001/generator/", data = json.dumps({'filename':date_and_time, 'midistart' : midistart}))
             return HttpResponse("upload over!") 
+        # if request.POST.get("1.wav", None):
+             
+
