@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+# import socket
+# if socket.get_hostname() == 'joe-mac-mini':
+#     #Development Server Settings go here
+# else:
+#     #Production Server Settings go here
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -122,5 +127,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'DMZ_static'),
+    os.path.join(BASE_DIR,'static'),
 )

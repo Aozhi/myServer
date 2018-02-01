@@ -6,10 +6,12 @@ import socket
 import logging
 import json
 import requests
+import simplejson
 # import urllib
 
 # Create your views here.
 Rootpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+Static_path = "/home/baby/pang/Server/DMZ/static"
 def music_home(request):
     return render(request,'music_home.html')
 
@@ -30,8 +32,25 @@ def upload_midi(request):
             # response = urlopen(req)    # 发送页面请求
             # except urllib2.HTTPError,error:
             #     print ("ERROR:error.read()")
-            reponse = requests.post("http://localhost:8001/generator/", data = json.dumps({'filename':date_and_time, 'midistart' : midistart}))
-            return HttpResponse("upload over!") 
+            response = requests.post("http://localhost:8007/generator/", data = json.dumps({'filename':date_and_time, 'midistart' : midistart}))
+    # if request.method == 'POST':
+        # req2 = simplejson.loads(request.body)
+        # filedir = req['wavdir']
+        # print(filedir)
+        # response.getOutputSteam(wavfile)
+        # reponse2 = request.POST.get("wavfile", None)
+            print(response)
+            # content = {'wavdir':reponse2}
+            while True: 
+                        # print(str(Static_path)+ '/' + str(date_and_time) + '/' + str(date_and_time) + '.wav')
+                if os.path.isfile(str(Static_path) + '/wav/' + str(date_and_time) + '/' + str(date_and_time) + '.wav'):
+                    content = {'wavdir': 'wav/' + str(date_and_time) + '/' + str(date_and_time) + '.wav',
+                               'oggdir': 'wav/' + str(date_and_time) + '/' + str(date_and_time) + '.ogg',
+                               'mp3dir': 'wav/' + str(date_and_time) + '/' + str(date_and_time) + '.mp3'}
+                    # content = {'wavdir': str(Static_path)+'/wav/' + str(date_and_time) + '/' + str(date_and_time) + '.wav'}
+                    break;
+            return render(request,'wavplayer.html', content)
+            # return HttpResponse("upload over!") 
         # if request.POST.get("1.wav", None):
              
 

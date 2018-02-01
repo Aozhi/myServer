@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MusicPlayer</title>    
+    <style>
+        h1{
+            text-align: center;
+
+        }
+        {% load staticfiles %}
+        body{
+             background: url({%static '/Images/bg.png'%});
+             color:#fff
+        }
+	.footer{
+	     position:absolute;
+	     bottom:0;
+	     padding-left:5%;
+	     color:#666;
+	}
+    </style>
+</head>
+<body>
+{% load staticfiles %}
+    <h2>Music: {{wavdir}} </h2> 
+    <div>
+    <audio id="audio1" controls>
+      <source src="{%static wavdir%}" type="audio/wav">      
+      <source src="{%static oggdir%}" type="audio/ogg">
+      <source src="{%static mp3dir%}" type="audio/mpeg">
+    </audio>
+    </div>
+    <div  class="footer">
+	     CopyRight© 2018 PA_Tech. All rights reserved
+    </div>
+</body>
+</html>

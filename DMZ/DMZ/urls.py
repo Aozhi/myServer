@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^hello$', view.hello),
     url(r'^DMZdb$', DMZdb.DMZdb),
     url(r'^music_home$', music_home),
-    url(r'^upload_midi/', upload_midi),
+    url(r'^wavplayer/', upload_midi),
+    # url(r'^wavplayer/', wavplayer),
 ]
